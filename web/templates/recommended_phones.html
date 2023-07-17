@@ -1,0 +1,14 @@
+{% extends 'base_generic.html' %}
+{% block content %}
+    <h1>Recommended Phones</h1>
+    <div class="phone-list">
+    {% for phone in recommended_phones %}
+        <div class="phone-card">
+            <h2><a href="{% url 'phone_detail' phone.id %}">{{ phone.name }}</a></h2>
+            <p>{{ phone.description }}</p>
+        </div>
+    {% empty %}
+        <p>No recommendations at this time.</p>
+    {% endfor %}
+    </div>
+{% endblock %}

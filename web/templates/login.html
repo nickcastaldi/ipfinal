@@ -1,0 +1,20 @@
+{% extends 'base_generic.html' %}
+{% block content %}
+<style>
+</style>
+<div class="form-container">
+    <h2>Login</h2>
+    <form method="post">
+        {% csrf_token %}
+        {% for field in form %}
+        <div class="form-field">
+            <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+            {{ field }}
+        </div>
+        {% endfor %}
+        <div class="form-field">
+            <input type="submit" value="Login">
+        </div>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,85 @@
+{% extends 'base_generic.html' %}
+{% load static %}
+{% block content %}
+<style>
+    body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        font-family: Arial, sans-serif;
+    }
+
+    .profile-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+        padding: 50px;
+        background-color: #f0f0f0;
+        border-radius: 15px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+        width: 300px;
+    }
+
+    .profile-image {
+        width: 200px;
+        height: 200px;
+        object-fit: cover;
+        border-radius: 50%;
+    }
+
+    .profile-info {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 5px;
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+
+    form input {
+        width: 200px;
+        padding: 5px;
+    }
+
+    button {
+        padding: 5px 15px;
+        background-color: dodgerblue;
+        color: white;
+        border: none;
+        border-radius: 5px;
+    }
+
+    button:hover {
+        background-color: royalblue;
+    }
+</style>
+
+<div class="profile-wrapper">
+    <img src="{% static 'dog-4372036_1280.jpg' %}" alt="Golden Retriever" class="profile-image">
+
+    <div class="profile-info">
+        <h2>{{ user.username }}</h2>
+        <p>{{ user.email }}</p>
+        <p>{{ user.first_name }} {{ user.last_name }}</p>
+    </div>
+
+    <h2>Profile</h2>
+    <form method="post">
+        {% csrf_token %}
+        <input type="text" name="username" placeholder="Username" value="{{ user.username }}">
+        <input type="email" name="email" placeholder="Email" value="{{ user.email }}">
+        <input type="text" name="first_name" placeholder="First Name" value="{{ user.first_name }}">
+        <input type="text" name="last_name" placeholder="Last Name" value="{{ user.last_name }}">
+        <button type="submit">Update</button>
+    </form>
+</div>
+
+{% endblock %}

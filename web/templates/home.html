@@ -1,0 +1,39 @@
+{% extends 'base_generic.html' %}
+<html>
+<body>
+{% block content %}
+
+    <section id="hero">
+        <div class="hero-content">
+            <h1>Welcome to Used Phones 4 U</h1>
+            <p>Find the perfect used phone for you</p>
+            <a href="{% url 'browse_phones' %}" class="btn">Browse Phones</a>
+        </div>
+    </section>
+
+    <section id="featured-phones">
+        <h2>Featured Phones</h2>
+        <div class="phone-list">
+            <div class="phone-card">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/Android_logo_2019_%28stacked%29.svg/182px-Android_logo_2019_%28stacked%29.svg.png" alt="Android">
+                <h3>Android</h3>
+                <p>Android OS is a Linux-based mobile operating system that primarily runs on smartphones and tablets. The Android platform includes an operating system based upon the Linux kernel, a GUI, a web browser and end-user applications that can be downloaded.</p>
+            </div>
+            <div class="phone-card">
+                <img src="https://w7.pngwing.com/pngs/622/355/png-transparent-logo-product-design-ios-brand-desktop-computer-text-computer-logo-thumbnail.png" alt="iPhone">
+                <h3>iPhone</h3>
+                <p>The iPhone is a smartphone made by Apple that combines a computer, iPod, digital camera and cellular phone into one device with a touchscreen interface. The iPhone runs the iOS operating system, and in 2021 when the iPhone 13 was introduced, it offered up to 1 TB of storage and a 12-megapixel camera.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2023 Used Phones 4 U. All rights reserved.</p>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="script.js"></script>
+
+</body>
+</html>
+{% endblock %}

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Used Phones 4 U</title>
+        <style>
+            body {
+                background-color: skyblue;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+            }
+            .phone-list {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            .phone-card {
+                margin: 10px;
+            }
+            nav ul {
+                display: flex;
+                justify-content: center;
+                list-style-type: none;
+                padding: 0;
+            }
+            nav ul li {
+                margin: 0 15px;
+            }
+        </style>
+    </head>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="{% url 'home' %}" class="active">Home</a></li>
+                <li><a href="{% url 'about' %}">About Us</a></li>
+                <li><a href="#">Contact</a></li>
+                <li><a href="{% url 'login' %}">Login</a></li>
+                <li><a href="{% url 'register' %}">Register</a></li>
+                <li><a href="{% url 'rate_phone' %}">Rate a Phone</a></li>
+                <li>
+                    {% if user.is_authenticated %}
+                    <form method="POST" action="{% url 'logout' %}">
+                        {% csrf_token %}
+                        <button type="submit">Logout</button>
+                    </form>
+                    {% endif %}
+                </li>
+                
+            </ul>
+        </nav>
+    </header>
+<body>
+    {% block content %}
+    {% endblock %}
+</body>
+</html>

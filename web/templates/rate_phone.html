@@ -1,0 +1,48 @@
+{% extends 'base_generic.html' %}
+{% block content %}
+{% for phone in phones %}
+<div class="phone">
+    <h2>{{ phone.name }}</h2>
+    <div class="stars" data-phone-id="{{ phone.id }}">
+        {% for i in '12345'|make_list %}
+        <span class="star" data-star-value="{{ i }}">&#9734;</span>
+        {% endfor %}
+    </div>
+</div>
+{% endfor %}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+
+$(document).ready(function(){
+    $(".star").click(function(){
+        var stars = $(this).data("star-value"); // This gets the number of stars from the star that was clicked.
+        var phone_id = $(this).parent().data("phone-id"); // This gets the phone id from the stars div.
+
+        var data = {
+            "stars": stars,
+            "phone_id": phone_id
+        }
+
+        $.ajax({
+            url: "/rate_phone/",
+            type: "POST",
+            data: JSON.stringify(data),
+            headers: {
+                'X-Requested-With': 'XMLHttpRequest',
+                'Content-Type': 'application/json',
+                'X-CSRFToken': '{{ csrf_token }}'
+            },
+            success: function(response) {
+                if (response.status === 'ok') {
+                    alert("Rating submitted successfully.");
+                } else {
+                    alert("There was an error submitting your rating.");
+                }
+            }
+        });
+    });
+});
+
+</script>
+{% endblock %}

@@ -1,0 +1,60 @@
+{% extends 'base_generic.html' %}
+{% block content %}
+<style>
+.form-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #fff;
+}
+.form-container h2 {
+    margin-bottom: 20px;
+}
+.form-container form {
+    width: 100%;
+}
+.form-container form .form-field {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+}
+.form-container form .form-field label {
+    margin-bottom: 5px;
+}
+.form-container form .form-field input {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+.form-container form .form-field input[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    cursor: pointer;
+}
+.form-container form .form-field input[type="submit"]:hover {
+    background-color: #45a049;
+}
+</style>
+<div class="form-container">
+    <h2>Register</h2>
+    <form method="post">
+        {% csrf_token %}
+        {% for field in form %}
+        <div class="form-field">
+            <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+            {{ field }}
+        </div>
+        {% endfor %}
+        <div class="form-field">
+            <input type="submit" value="Register">
+        </div>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,34 @@
+{% extends 'base_generic.html' %}
+{% block content %}
+<h1>Browse Phones</h1>
+
+<form method="get">
+    <input type="text" name="name" placeholder="Search by name" value="{{ request.GET.name }}">
+    <select name="os">
+        <option value="">Search by OS</option>
+        {% for os in os_choices %}
+            <option value="{{ os }}" {% if request.GET.os == os %}selected{% endif %}>{{ os }}</option>
+        {% endfor %}
+    </select>
+    <select name="manufacturer">
+        <option value="">Search by Manufacturer</option>
+        {% for manufacturer in manufacturer_choices %}
+            <option value="{{ manufacturer }}" {% if request.GET.manufacturer == manufacturer %}selected{% endif %}>{{ manufacturer }}</option>
+        {% endfor %}
+    </select>
+    <input type="submit" value="Search">
+</form>
+
+{% for phone in phones %}
+    <div>
+        {% if phone.photo %}
+            <img src="{{ phone.photo.url }}" alt="{{ phone.name }}">
+        {% endif %}
+        <h2>{{ phone.name }} ({{ phone.os }})</h2>
+        <p>Manufacturer: {{ phone.manufacturer }}</p>
+        <p>{{ phone.details }}</p>
+    </div>
+{% empty %}
+    <p>No phones found.</p>
+{% endfor %}
+{% endblock %}
